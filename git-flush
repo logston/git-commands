@@ -1,0 +1,8 @@
+#! /usr/bin/env sh
+
+# This script is a custom git command that
+# resets all staged, unstaged, and untrack changes
+# back to the last commit.
+
+git add --all
+git reset --hard
