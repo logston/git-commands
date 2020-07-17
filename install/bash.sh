@@ -5,20 +5,29 @@ BASH_EXPORT='export PATH="$HOME/.git-commands:$PATH"'
 
 # Check for ~/.bash_profile file
 if [ ! -f "${HOME}/.bash_profile" ]; then
+    echo "Creating ~/.bash_profile file"
     touch "${HOME}/.bash_profile"
 fi
 
 # Check for line in ~/.bash_proile
-exists=$(grep "${BASH_EXPORT}" ~/.bash_profile | wc -l)
-if [ ! ${exists} ]; then
-    echo ${BASH_EXPORT} >> "${HOME}/.bash_profile"
+missing=$(grep "${BASH_EXPORT}" ~/.bash_profile)
+if [ ${missing} ]; then
+    echo "Installing PATH update inn ~/.bash_profile"
+    echo "${BASH_EXPORT}" >> "${HOME}/.bash_profile"
 fi
 
 # Create and update .git-commands directory
 if [ -d "${GIT_CMD_DIR}" ]; then
-    cd ${GIT_CMD_DIR} && git pull && cd -
+    echo "Updating command repository"
+    cd ${GIT_CMD_DIR}
+    git pull
+    cd -
 
 else
+    echo "Installing command repository at ~/.git-commands"
     cd ${HOME}
     git clone https://github.com/logston/git-commands.git "${HOME}/.git-commands"
+    cd -
 fi
+
+echo "Installation complete!"
