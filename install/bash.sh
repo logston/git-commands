@@ -26,7 +26,7 @@ if [ -d "${GIT_CMD_DIR}" ]; then
 else
     echo "Installing command repository at ~/.git-commands"
     cd ${HOME}
-    git clone https://github.com/logston/git-commands.git "${HOME}/.git-commands"
+    git clone -q https://github.com/logston/git-commands.git "${HOME}/.git-commands"
     cd -
 fi
 
