@@ -4,7 +4,7 @@
 
 MAIN_BANCH="${1:-HEAD}"
 
-DEFAULT_SKIP_BRANCHES="master dev"
+DEFAULT_SKIP_BRANCHES="master main dev"
 SKIP_BRANCHES="${SKIP_BRANCHES:-${DEFAULT_SKIP_BRANCHES}}"
 
 echo "Main branch: ${MAIN_BANCH}"
