@@ -7,9 +7,7 @@ Commands to make the git workflow easier.
 Installation of this repo adds the following commands to your already installed git command:
 
 - flush - throw away everything in the working directory and revert to the last commit at HEAD
-- prune
-    - merged - remove all local branches that have been merged remotely
-    - local - remove local remote/\* branches that have been delete from origin
+- merged prune - remove all local branches that have been merged remotely
 - test-commands - Test that this library is installed correctly
 
 Example usage:
