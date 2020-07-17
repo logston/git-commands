@@ -22,12 +22,12 @@ if [ -d "${GIT_CMD_DIR}" ]; then
     cd ${GIT_CMD_DIR}
     git pull
     cd -
+    echo "Updated complete!"
 
 else
     echo "Installing command repository at ~/.git-commands"
     cd ${HOME}
     git clone -q https://github.com/logston/git-commands.git "${HOME}/.git-commands"
     cd -
+    echo "Installation complete!"
 fi
-
-echo "Installation complete!"
