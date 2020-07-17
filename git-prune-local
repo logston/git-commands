@@ -1,6 +1,0 @@
-#! /usr/bin/env sh
-
-# the following command gets rid of local remote/* branches
-# that are no longer on GitHub.
-
-git fetch origin --prune
