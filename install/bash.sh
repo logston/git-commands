@@ -9,7 +9,7 @@ if [ ! -f "${HOME}/.bash_profile" ]; then
 fi
 
 # Check for line in ~/.bash_proile
-exists=$(grep ${BASH_EXPORT} ~/.bash_profile | wc -l)
+exists=$(grep "${BASH_EXPORT}" ~/.bash_profile | wc -l)
 if [ ! ${exists} ]; then
     echo ${BASH_EXPORT} >> "${HOME}/.bash_profile"
 fi
@@ -20,5 +20,5 @@ if [ -d "${GIT_CMD_DIR}" ]; then
 
 else
     cd ${HOME}
-    git clone https://github.com/logston/git-commands.git
+    git clone https://github.com/logston/git-commands.git "${HOME}/.git-commands"
 fi
