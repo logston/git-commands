@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# This command will remove any local branches that have been merged into master.
+
+MAIN_BANCH="${1:-HEAD}"
+
+DEFAULT_SKIP_BRANCHES="master dev"
+SKIP_BRANCHES="${SKIP_BRANCHES:-${DEFAULT_SKIP_BRANCHES}}"
+
+echo "Main branch: ${MAIN_BANCH}"
+echo "Default skip branches: ${DEFAULT_SKIP_BRANCHES}"
+echo "Skip branches: ${SKIP_BRANCHES}"
+
+# filter branches down to single string of branch names
+branches=$(git branch --merged ${MAIN_BANCH} | sed 's/*//' | sed 's/->//' | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g')
+
+echo "Branches: ${branches}"
+
+for branch in ${branches}; do
+    echo "Looking at $branch..."
+
+    skip=0
+    for skip_branch in "${SKIP_BRANCHES}"; do
+        grep "${skip_branch}" <<< "${branch}" > /dev/null
+        if [ $? -eq 0 ]; then
+            skip=1
+            break
+        fi
+    done
+
+    if [ ${skip} ]; then
+        echo "Skipping ${branch}"
+        continue
+    fi
+
+    echo "Deleting ${branch}"
+    git branch -D $branch 2> /dev/null
+done
