@@ -10,8 +10,8 @@ if [ ! -f "${HOME}/.bash_profile" ]; then
 fi
 
 # Check for line in ~/.bash_proile
-missing=$(grep "${BASH_EXPORT}" ~/.bash_profile)
-if [ ${missing} ]; then
+grep "${BASH_EXPORT}" ~/.bash_profile > /dev/null
+if [ $? -ne 0 ]; then
     echo "Installing PATH update inn ~/.bash_profile"
     echo "${BASH_EXPORT}" >> "${HOME}/.bash_profile"
 fi
