@@ -13,7 +13,7 @@ Installation of this repo adds the following commands to your already installed 
 Example usage:
 
 ```
-$ git prune merged
+$ git prune-merged
 ```
 
 ## Installation and Updating
